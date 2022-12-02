@@ -1,0 +1,36 @@
+.container {
+    border-radius: 25px;
+    text-align: center;
+    padding: 25px;
+    width: 40vw;
+    margin: 4vh auto;
+}
+
+p:nth-child(1) {
+    font-size: 6vw;
+}
+
+p:nth-child(2) {
+    font-size: 3vw;
+    margin: 0;
+}
+
+.yesBackground {
+    background-color: #77DD77;
+}
+
+.enrouteBackground {
+    background-color: #FFFAA0;
+}
+
+.noBackground {
+    background-color: #FF5757;
+}
+
+.yesBackground > p, .enrouteBackground > p, .noBackground > p {
+    color: #121212;
+}
+
+.grayedBackground {
+    background-color: #404040;
+}

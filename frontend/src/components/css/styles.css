@@ -1,0 +1,14 @@
+* {
+    font-family: Noto Sans, sans-serif;
+}
+
+body {
+    background-color: #121212;
+    color: #CCCCCC;
+}
+
+h1 {
+    text-align: center;
+    font-size: 8vw;
+    margin-top: 3vh;
+}
