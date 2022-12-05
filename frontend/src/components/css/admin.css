@@ -1,0 +1,38 @@
+form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+input, button {
+    margin: 2vh auto;
+    height: 30px;
+    width: 200px;
+}
+
+button {
+    margin-left: 0;
+    margin-right: 0;
+    cursor: pointer;
+}
+
+.formContainer {
+    display: flex;
+    margin: 20vh auto;
+    flex-direction: column;
+    align-items: center;
+}
+
+.errorMessage {
+    color: #FF5757;
+}
+
+@media (min-width: 769px) {
+    .formContainer {
+        background-color: #404040;
+        width: 400px;
+        padding-bottom: 2vh;
+        border-radius: 25px;
+    }
+}

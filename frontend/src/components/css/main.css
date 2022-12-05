@@ -34,3 +34,7 @@ p:nth-child(2) {
 .grayedBackground {
     background-color: #404040;
 }
+
+.statusContainer {
+    margin: 12vh auto;
+}

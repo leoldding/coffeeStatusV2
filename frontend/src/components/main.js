@@ -55,17 +55,19 @@ class Main extends React.Component {
         return (
             <div>
                 <h1>Is Leo at Think Coffee?</h1>
-                {this.state.mobile ?
-                    <div>
-                        <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'Yes'}/>
-                        <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'En Route'}/>
-                        <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'No'}/>
-                    </div>
-                    :
-                    <div>
-                        <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={''}/>
-                    </div>
-                }
+                <div className={"statusContainer"}>
+                    {this.state.mobile ?
+                        <div>
+                            <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'Yes'}/>
+                            <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'En Route'}/>
+                            <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'No'}/>
+                        </div>
+                        :
+                        <div>
+                            <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={''}/>
+                        </div>
+                    }
+                </div>
             </div>
         )
     }
