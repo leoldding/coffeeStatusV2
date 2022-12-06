@@ -70,7 +70,7 @@ func initDB() {
 		return
 	}
 	if count == 0 {
-		_, err = postgres.Exec("INSERT INTO status(status, substatus) VALUES ($1, $2);", "yes", "none")
+		_, err = postgres.Exec("INSERT INTO status(status, substatus) VALUES ($1, $2);", "Yes", "*Temp*")
 		if err != nil {
 			log.Printf("Error inserting status into database: %v", err)
 			return
