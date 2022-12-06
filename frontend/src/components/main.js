@@ -1,4 +1,5 @@
 import React from 'react';
+import Axios from 'axios';
 import './css/styles.css';
 import './css/main.css';
 
@@ -37,18 +38,29 @@ class Main extends React.Component {
         super(props);
         this.state = {
             mobile: true,
-            status: 'No',
-            subStatus: 'Temporary Text'
+            status: '',
+            subStatus: '',
         };
     };
 
-    componentDidMount() {
+    async componentDidMount() {
         if (window.matchMedia("(min-width: 769px)").matches) {
             this.setState({mobile: false})
         }
         window.addEventListener('resize', (event) => {
             this.setState({mobile: window.matchMedia("(max-width: 768px").matches})
         });
+
+        try {
+            var data
+            await Axios.get("/backend/retrieveStatus")
+                .then(function (response) {
+                    data = response.data
+                })
+            this.setState({status: data.status, subStatus: data.substatus})
+        } catch(err) {
+            console.log(err)
+        }
     };
 
     render() {

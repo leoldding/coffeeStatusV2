@@ -28,6 +28,19 @@ button {
     color: #FF5757;
 }
 
+.successMessage {
+    color: #77DD77;
+}
+
+.multipleButtons {
+    display: inline
+}
+
+.multipleButtons > button {
+    width: 90px;
+    margin: 2vh 1vw;
+}
+
 @media (min-width: 769px) {
     .formContainer {
         background-color: #404040;

@@ -27,6 +27,8 @@ services:
       - PGDATABASE=$PGDATABASE
       - PGPASSWORD=$PGPASSWORD
       - PGPORT=$PGPORT
+      - ADMINNAME=$ADMINNAME
+      - ADMINPASSWORD=$ADMINPASSWORD
     depends_on:
       postgres:
         condition: service_healthy
