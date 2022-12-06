@@ -29,9 +29,6 @@ services:
       - PGPORT=$PGPORT
       - ADMINNAME=$ADMINNAME
       - ADMINPASSWORD=$ADMINPASSWORD
-    depends_on:
-      postgres:
-        condition: service_healthy
   nginx:
     restart: always
     build:
