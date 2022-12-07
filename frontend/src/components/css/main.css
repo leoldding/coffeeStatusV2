@@ -8,11 +8,12 @@
 
 p:nth-child(1) {
     font-size: 6vw;
+    margin: 8vh auto;
 }
 
 p:nth-child(2) {
     font-size: 3vw;
-    margin: 0;
+    margin: 1vh auto;
 }
 
 .yesBackground {
