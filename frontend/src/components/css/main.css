@@ -12,7 +12,7 @@ p:nth-child(1) {
 }
 
 p:nth-child(2) {
-    font-size: 3vw;
+    font-size: 4vw;
     margin: 1vh auto;
 }
 
@@ -38,4 +38,14 @@ p:nth-child(2) {
 
 .statusContainer {
     margin: 12vh auto;
+}
+
+@media (min-width: 769px) {
+    p:nth-child(1) {
+        margin: 10vh auto;
+    }
+
+    p:nth-child(2) {
+        font-size: 3vw;
+    }
 }
