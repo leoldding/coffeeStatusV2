@@ -47,13 +47,9 @@ class Main extends React.Component {
         if (window.matchMedia("(min-width: 769px)").matches) {
             this.setState({mobile: false})
         }
-        
+
         window.addEventListener('resize', (event) => {
-            this.setState({mobile: window.matchMedia("(max-width: 768px").matches})
-            console.log("Match Media: " + window.matchMedia("(max-width: 768px").matches)
-            console.log("Width: " + window.innerWidth.toString())
-            console.log("Height: " + window.innerHeight.toString())
-            console.log("MOBILE: " + this.state.mobile)
+            window.innerWidth < 768 ? this.setState({mobile: true}) : this.setState({mobile: false})
         });
 
         try {
