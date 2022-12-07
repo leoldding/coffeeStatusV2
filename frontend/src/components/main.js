@@ -49,7 +49,7 @@ class Main extends React.Component {
         }
         window.addEventListener('resize', (event) => {
             this.setState({mobile: window.matchMedia("(max-width: 768px").matches})
-            console.log(window.matchMedia("(max-width: 768px").matches)
+            console.log(window.screen.width)
             console.log("MOBILE: " + this.state.mobile)
         });
 
