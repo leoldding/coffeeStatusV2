@@ -28,7 +28,7 @@ func createNewSession(w http.ResponseWriter, username string) {
 	sessionToken := uuid.New().String()
 	expiresAt := time.Now().Add(10 * time.Minute)
 
-	_, err := postgres.Exec("INSERT INTO sessions(sessionname, username, expiration) VALUES ($1, $2, $3);", sessionToken, username, expiresAt)
+	_, err := postgres.Exec("INSERT INTO coffeeSessions(sessionname, username, expiration) VALUES ($1, $2, $3);", sessionToken, username, expiresAt)
 	if err != nil {
 		log.Printf("Error inserting session into database: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -53,7 +53,7 @@ func checkSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if isCookieExpired(sessionToken) {
-		_, err = postgres.Exec("DELETE FROM sessions WHERE sessionname = $1", sessionToken.Value)
+		_, err = postgres.Exec("DELETE FROM coffeeSessions WHERE sessionname = $1", sessionToken.Value)
 		if err != nil {
 			log.Printf("Error deleting session from database: %v", err)
 			w.WriteHeader(http.StatusUnauthorized)
@@ -62,7 +62,7 @@ func checkSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var username string
-	row := postgres.QueryRow("SELECT username FROM sessions WHERE sessionname = $1", sessionToken.Value)
+	row := postgres.QueryRow("SELECT username FROM coffeeSessions WHERE sessionname = $1", sessionToken.Value)
 	err = row.Scan(&username)
 	if err != nil {
 		log.Printf("Error retrieving username from previous session; %v", err)
@@ -87,7 +87,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 
 	var password []byte
 
-	row := postgres.QueryRow("SELECT password FROM admins WHERE adminname = $1", user.Username)
+	row := postgres.QueryRow("SELECT password FROM coffeeAdmins WHERE adminname = $1", user.Username)
 	err = row.Scan(&password)
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -108,7 +108,7 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = postgres.Exec("DELETE FROM sessions WHERE username = $1", user.Username)
+	_, err = postgres.Exec("DELETE FROM coffeeSessions WHERE username = $1", user.Username)
 	if err != nil {
 		log.Printf("Error deleting previous user sessions: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -137,7 +137,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
 		Path:     "/",
 	})
 
-	_, err = postgres.Exec("DELETE FROM sessions WHERE sessionname = $1", sessionToken.Value)
+	_, err = postgres.Exec("DELETE FROM coffeeSessions WHERE sessionname = $1", sessionToken.Value)
 	if err != nil {
 		log.Printf("Error deleting session from database: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -162,7 +162,7 @@ func statusUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var username string
-	row := postgres.QueryRow("SELECT username FROM sessions WHERE sessionname = $1", sessionToken.Value)
+	row := postgres.QueryRow("SELECT username FROM coffeeSessions WHERE sessionname = $1", sessionToken.Value)
 	err = row.Scan(&username)
 	if err != nil {
 		log.Printf("Error retrieving username from session: %v", err)
@@ -180,7 +180,7 @@ func statusUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	_, err = postgres.Exec("UPDATE status SET status = $1, substatus = $2", status.Status, status.Substatus)
+	_, err = postgres.Exec("UPDATE coffeeStatus SET status = $1, substatus = $2", status.Status, status.Substatus)
 	if err != nil {
 		log.Printf("Error updating status in database: %v", err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -196,7 +196,7 @@ func retrieveStatus(w http.ResponseWriter, r *http.Request) {
 	var status string
 	var substatus string
 
-	row := postgres.QueryRow("SELECT * FROM status")
+	row := postgres.QueryRow("SELECT * FROM coffeeStatus")
 	err := row.Scan(&status, &substatus)
 	if err != nil {
 		log.Printf("Error retrieving status from database: %v", err)

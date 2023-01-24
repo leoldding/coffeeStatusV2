@@ -6,7 +6,7 @@ import (
 
 func main() {
 	connectToPostgres()
-	//initDB()
+	initDB()
 
 	http.HandleFunc("/ping", ping)
 	http.HandleFunc("/checkSession", checkSession)

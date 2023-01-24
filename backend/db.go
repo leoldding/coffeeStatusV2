@@ -27,19 +27,19 @@ func connectToPostgres() {
 
 func initDB() {
 	// create tables on initial setup
-	_, err := postgres.Exec("CREATE TABLE IF NOT EXISTS sessions(sessionname TEXT PRIMARY KEY, username VARCHAR(40), expiration TIMESTAMP WITH TIME ZONE);")
+	_, err := postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeSessions(sessionname TEXT PRIMARY KEY, username VARCHAR(40), expiration TIMESTAMP WITH TIME ZONE);")
 	if err != nil {
 		log.Printf("Error creating sessions table in Postgres: %v", err)
 		return
 	}
 
-	_, err = postgres.Exec("CREATE TABLE IF NOT EXISTS admins(adminname VARCHAR(40) PRIMARY KEY, password TEXT);")
+	_, err = postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeAdmins(adminname VARCHAR(40) PRIMARY KEY, password TEXT);")
 	if err != nil {
 		log.Printf("Error creating admins table in Postgres: %v", err)
 		return
 	}
 
-	_, err = postgres.Exec("CREATE TABLE IF NOT EXISTS status(status VARCHAR(40), substatus TEXT);")
+	_, err = postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeStatus(status VARCHAR(40), substatus TEXT);")
 	if err != nil {
 		log.Printf("Error creating status table in Postgres: %v", err)
 		return
@@ -47,15 +47,15 @@ func initDB() {
 
 	// add admin account on initial setup
 	var count int
-	row := postgres.QueryRow("SELECT COUNT(*) FROM admins;")
+	row := postgres.QueryRow("SELECT COUNT(*) FROM coffeeAdmins;")
 	err = row.Scan(&count)
 	if err != nil {
-		log.Printf("Error countintg rows in admins: %v", err)
+		log.Printf("Error counting rows in admins: %v", err)
 		return
 	}
 	if count == 0 {
 		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(os.Getenv("ADMINPASSWORD")), 8)
-		_, err = postgres.Exec("INSERT INTO admins(adminname, password) VALUES ($1, $2);", os.Getenv("ADMINNAME"), hashedPassword)
+		_, err = postgres.Exec("INSERT INTO coffeeAdmins(adminname, password) VALUES ($1, $2);", os.Getenv("ADMINNAME"), hashedPassword)
 		if err != nil {
 			log.Printf("Error inserting admin credentials into database: %v", err)
 			return
@@ -63,14 +63,14 @@ func initDB() {
 	}
 
 	// add initial status
-	row = postgres.QueryRow("SELECT COUNT(*) FROM status;")
+	row = postgres.QueryRow("SELECT COUNT(*) FROM coffeeStatus;")
 	err = row.Scan(&count)
 	if err != nil {
 		log.Printf("Error counting rows in status: %v", err)
 		return
 	}
 	if count == 0 {
-		_, err = postgres.Exec("INSERT INTO status(status, substatus) VALUES ($1, $2);", "Yes", "*Temp*")
+		_, err = postgres.Exec("INSERT INTO coffeeStatus(status, substatus) VALUES ($1, $2);", "Yes", "*Temp*")
 		if err != nil {
 			log.Printf("Error inserting status into database: %v", err)
 			return
