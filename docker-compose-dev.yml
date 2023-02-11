@@ -28,8 +28,8 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
-      - ADMINNAME=admin
-      - ADMINPASSWORD=password
+      - COFFEEADMINNAME=admin
+      - COFFEEADMINPASSWORD=password
     depends_on:
       postgres:
         condition: service_healthy

@@ -25,7 +25,7 @@ func connectToPostgres() {
 	return
 }
 
-func initDB() {
+func coffeeInitDB() {
 	// create tables on initial setup
 	_, err := postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeSessions(sessionname TEXT PRIMARY KEY, username VARCHAR(40), expiration TIMESTAMP WITH TIME ZONE);")
 	if err != nil {
@@ -54,8 +54,8 @@ func initDB() {
 		return
 	}
 	if count == 0 {
-		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(os.Getenv("ADMINPASSWORD")), 8)
-		_, err = postgres.Exec("INSERT INTO coffeeAdmins(adminname, password) VALUES ($1, $2);", os.Getenv("ADMINNAME"), hashedPassword)
+		hashedPassword, err := bcrypt.GenerateFromPassword([]byte(os.Getenv("COFFEEADMINPASSWORD")), 8)
+		_, err = postgres.Exec("INSERT INTO coffeeAdmins(adminname, password) VALUES ($1, $2);", os.Getenv("COFFEEADMINNAME"), hashedPassword)
 		if err != nil {
 			log.Printf("Error inserting admin credentials into database: %v", err)
 			return
