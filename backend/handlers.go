@@ -24,7 +24,7 @@ func isCookieExpired(c *http.Cookie) bool {
 	return time.Now().Before(c.Expires)
 }
 
-func createNewSession(w http.ResponseWriter, username string) {
+func coffeeCreateNewSession(w http.ResponseWriter, username string) {
 	sessionToken := uuid.New().String()
 	expiresAt := time.Now().Add(10 * time.Minute)
 
@@ -36,7 +36,7 @@ func createNewSession(w http.ResponseWriter, username string) {
 	}
 
 	http.SetCookie(w, &http.Cookie{
-		Name:     "sessionToken",
+		Name:     "coffeeToken",
 		Value:    sessionToken,
 		Expires:  expiresAt,
 		HttpOnly: true,
@@ -44,8 +44,8 @@ func createNewSession(w http.ResponseWriter, username string) {
 	})
 }
 
-func checkSession(w http.ResponseWriter, r *http.Request) {
-	sessionToken, err := r.Cookie("sessionToken")
+func coffeeCheckSession(w http.ResponseWriter, r *http.Request) {
+	sessionToken, err := r.Cookie("coffeeToken")
 	if err != nil {
 		log.Printf("Cookie does not exist: %v", err)
 		w.WriteHeader(http.StatusUnauthorized)
@@ -70,13 +70,13 @@ func checkSession(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	createNewSession(w, username)
+	coffeeCreateNewSession(w, username)
 
 	w.WriteHeader(http.StatusOK)
 	return
 }
 
-func login(w http.ResponseWriter, r *http.Request) {
+func coffeeLogin(w http.ResponseWriter, r *http.Request) {
 	var user User
 
 	err := json.NewDecoder(r.Body).Decode(&user)
@@ -115,14 +115,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	createNewSession(w, user.Username)
+	coffeeCreateNewSession(w, user.Username)
 
 	w.WriteHeader(http.StatusOK)
 	return
 }
 
-func logout(w http.ResponseWriter, r *http.Request) {
-	sessionToken, err := r.Cookie("sessionToken")
+func coffeeLogout(w http.ResponseWriter, r *http.Request) {
+	sessionToken, err := r.Cookie("coffeeToken")
 	if err != nil {
 		log.Printf("Session does not exist: %v", err)
 		w.WriteHeader(http.StatusUnauthorized)
@@ -130,7 +130,7 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.SetCookie(w, &http.Cookie{
-		Name:     "sessionToken",
+		Name:     "coffeeToken",
 		Value:    "",
 		Expires:  time.Unix(0, 0),
 		HttpOnly: true,
@@ -147,8 +147,8 @@ func logout(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func statusUpdate(w http.ResponseWriter, r *http.Request) {
-	sessionToken, err := r.Cookie("sessionToken")
+func coffeeStatusUpdate(w http.ResponseWriter, r *http.Request) {
+	sessionToken, err := r.Cookie("coffeeToken")
 	if err != nil {
 		log.Printf("Session does not exist: %v", err)
 		w.WriteHeader(http.StatusUnauthorized)
@@ -170,7 +170,7 @@ func statusUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	createNewSession(w, username)
+	coffeeCreateNewSession(w, username)
 
 	var status Status
 	err = json.NewDecoder(r.Body).Decode(&status)
@@ -191,7 +191,7 @@ func statusUpdate(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func retrieveStatus(w http.ResponseWriter, r *http.Request) {
+func coffeeRetrieveStatus(w http.ResponseWriter, r *http.Request) {
 	var fullStatus Status
 	var status string
 	var substatus string

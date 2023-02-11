@@ -24,7 +24,7 @@ class CoffeeAdmin extends React.Component {
 
     async componentDidMount() {
         try {
-            await Axios.get("backend/checkSession");
+            await Axios.get("/backend/coffeeCheckSession");
             this.setState({"loggedIn": true,});
         } catch(err) {
             if (err.response.status !== 400) {
@@ -45,7 +45,7 @@ class CoffeeAdmin extends React.Component {
             this.passwordFocus.current.focus();
         } else {
             try {
-                await Axios.post("backend/login", {
+                await Axios.post("/backend/coffeeLogin", {
                     username: this.state.username.trim(),
                     password: this.state.password.trim(),
                 });
@@ -77,7 +77,7 @@ class CoffeeAdmin extends React.Component {
         } else {
             this.setState({status: "", substatus: "", statusError: "",})
             try {
-                await Axios.post("backend/statusUpdate", {
+                await Axios.post("/backend/coffeeStatusUpdate", {
                     status: this.state.status,
                     substatus: this.state.substatus,
                 })
@@ -96,7 +96,7 @@ class CoffeeAdmin extends React.Component {
         event.preventDefault();
 
         try {
-            await Axios.get("backend/logout")
+            await Axios.get("/backend/coffeeLogout")
         } catch(err) {
             if (err.response.status === 500) {
                 console.log(err)

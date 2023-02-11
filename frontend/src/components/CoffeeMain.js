@@ -54,7 +54,7 @@ class CoffeeMain extends React.Component {
 
         try {
             var data
-            await Axios.get("/backend/retrieveStatus")
+            await Axios.get("/backend/coffeeRetrieveStatus")
                 .then(function (response) {
                     data = response.data
                 })
