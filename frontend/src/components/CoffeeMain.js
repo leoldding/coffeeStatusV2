@@ -1,30 +1,30 @@
 import React from 'react';
 import Axios from 'axios';
 import './css/styles.css';
-import './css/main.css';
+import './css/coffeeMain.css';
 
 class Container extends React.Component {
     constructor(props) {
         super(props);
         this.colors = {
-            'Yes': 'yesBackground',
-            'En Route': 'enrouteBackground',
-            'No': 'noBackground',
-            'None': 'grayedBackground',
+            'Yes': 'coffee_yes_background',
+            'En Route': 'coffee_enroute_background',
+            'No': 'coffee_no_background',
+            'None': 'coffee_gray_background',
         }
     }
 
     render() {
         if (this.props.textAndColor !== '') {
             return (
-                <div className={`container ${this.props.status === this.props.textAndColor ? this.colors[this.props.textAndColor] : this.colors['None']}`}>
+                <div className={`coffee_container ${this.props.status === this.props.textAndColor ? this.colors[this.props.textAndColor] : this.colors['None']}`}>
                     <p>{this.props.textAndColor}</p>
                     <p>{this.props.status === this.props.textAndColor && this.props.subStatus}</p>
                 </div>
             )
         }  else {
             return (
-                <div className={`container ${this.colors[this.props.status]}`}>
+                <div className={`coffee_container ${this.colors[this.props.status]}`}>
                     <p>{this.props.status}</p>
                     <p>{this.props.subStatus}</p>
                 </div>
@@ -33,7 +33,7 @@ class Container extends React.Component {
     }
 }
 
-class Main extends React.Component {
+class CoffeeMain extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -66,9 +66,9 @@ class Main extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"coffee_main"}>
                 <h1>Is Leo at Think Coffee?</h1>
-                <div className={"statusContainer"}>
+                <div className={"coffee_status_container"}>
                     {this.state.mobile ?
                         <div>
                             <Container status={this.state.status} subStatus={this.state.subStatus} textAndColor={'Yes'}/>
@@ -86,4 +86,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main;
+export default CoffeeMain;

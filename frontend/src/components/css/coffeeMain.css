@@ -1,0 +1,51 @@
+.coffee_container {
+    border-radius: 25px;
+    text-align: center;
+    padding: 25px;
+    width: 40vw;
+    margin: 4vh auto;
+}
+
+.coffee_status_container {
+    margin: 12vh auto;
+}
+
+.coffee_yes_background {
+    background-color: #77DD77;
+}
+
+.coffee_enroute_background {
+    background-color: #FFFAA0;
+}
+
+.coffee_no_background {
+    background-color: #FF5757;
+}
+
+.coffee_yes_background > p, .coffee_enroute_background > p, .coffee_no_background > p {
+    color: #121212;
+}
+
+.coffee_gray_background {
+    background-color: #404040;
+}
+
+.coffee_main p:nth-child(1) {
+    font-size: 6vw;
+    margin: 3vh auto;
+}
+
+.coffee_main p:nth-child(2) {
+    font-size: 4vw;
+    margin: 1vh auto;
+}
+
+@media (min-width: 769px) {
+    .coffee_main p:nth-child(1) {
+        margin: 10vh auto;
+    }
+
+    .coffee_main p:nth-child(2) {
+        font-size: 3vw;
+    }
+}

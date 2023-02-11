@@ -1,9 +1,9 @@
 import React from 'react';
 import Axios from 'axios';
 import './css/styles.css';
-import './css/admin.css';
+import './css/coffeeAdmin.css';
 
-class Admin extends React.Component {
+class CoffeeAdmin extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -112,17 +112,17 @@ class Admin extends React.Component {
         let statusSuccessMessage = this.state.successMessage
         if (this.state.loggedIn === false) {
             return (
-                <div>
+                <div className={"coffee_admin"}>
                     <h1>Admin Login</h1>
-                    <div className={"formContainer"}>
+                    <div className={"coffee_form_container"}>
                         <form onSubmit={this.credentialSubmit}>
                             <h2>Login Here</h2>
                             <input type={"text"} placeholder={"Username"} value={this.state.username} ref={this.usernameFocus}
                                    onChange={(event) => this.setState({username: event.target.value})}/>
-                            <div className={"errorMessage"}>{usernameErrorMessage}</div>
+                            <div className={"coffee_error_message"}>{usernameErrorMessage}</div>
                             <input type={"password"} placeholder={"Password"} value={this.state.password} ref={this.passwordFocus}
                                    onChange={(event) => this.setState({password: event.target.value})}/>
-                            <div className={"errorMessage"}>{passwordErrorMessage}</div>
+                            <div className={"coffee_error_message"}>{passwordErrorMessage}</div>
                             <button>Login</button>
                         </form>
                     </div>
@@ -130,18 +130,18 @@ class Admin extends React.Component {
             )
         } else {
             return (
-                <div>
+                <div className={"coffee_admin"}>
                     <h1>Admin Panel</h1>
-                    <div className={"formContainer"}>
+                    <div className={"coffee_form_container"}>
                         <form onSubmit={this.statusSubmit}>
                             <h2>Submit Information</h2>
-                            <div className={"successMessage"}>{statusSuccessMessage}</div>
+                            <div className={"coffee_success_message"}>{statusSuccessMessage}</div>
                             <input type={"text"} placeholder={"Status [Yes / En Route / No]"} value={this.state.status}
                                    onChange={(event) => this.setState({status: event.target.value})}/>
-                            <div className={"errorMessage"}>{statusErrorMessage}</div>
+                            <div className={"coffee_error_message"}>{statusErrorMessage}</div>
                             <input type={"text"} placeholder={"Substatus"} value={this.state.substatus}
                                    onChange={(event) => this.setState({substatus: event.target.value})}/>
-                            <div className={"multipleButtons"}>
+                            <div className={"coffee_multiple_buttons"}>
                                 <button>Submit</button>
                                 <button onClick={this.logout}>Logout</button>
                             </div>
@@ -153,4 +153,4 @@ class Admin extends React.Component {
     }
 }
 
-export default Admin;
+export default CoffeeAdmin;
