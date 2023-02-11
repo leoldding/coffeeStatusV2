@@ -27,11 +27,8 @@ func connectToPostgres() {
 
 func coffeeInitDB() {
 	// create tables on initial setup
-	_, err := postgres.Exec("DROP TABLE IF EXISTS coffeeSessions")
-	_, err = postgres.Exec("DROP TABLE IF EXISTS coffeeAdmins")
-	_, err = postgres.Exec("DROP TABLE IF EXISTS coffeeStatus")
-
-	_, err = postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeSessions(sessionname TEXT PRIMARY KEY, username VARCHAR(40), expiration TIMESTAMP WITH TIME ZONE);")
+	
+	_, err := postgres.Exec("CREATE TABLE IF NOT EXISTS coffeeSessions(sessionname TEXT PRIMARY KEY, username VARCHAR(40), expiration TIMESTAMP WITH TIME ZONE);")
 	if err != nil {
 		log.Printf("Error creating sessions table in Postgres: %v", err)
 		return
