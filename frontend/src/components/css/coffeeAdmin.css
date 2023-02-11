@@ -1,48 +1,48 @@
-form {
+.coffee_admin form {
     display: flex;
     flex-direction: column;
     margin: auto;
     align-items: center;
 }
 
-input, button {
+.coffee_admin input, .coffee_admin button {
     margin: 2vh auto;
     height: 30px;
     width: 200px;
 }
 
-button {
+.coffee_admin button {
     margin-left: 0;
     margin-right: 0;
     cursor: pointer;
 }
 
-.formContainer {
+.coffee_form_container {
     display: flex;
     margin: 20vh auto;
     flex-direction: column;
     align-items: center;
 }
 
-.errorMessage {
+.coffee_error_message {
     color: #FF5757;
 }
 
-.successMessage {
+.coffee_success_message {
     color: #77DD77;
 }
 
-.multipleButtons {
+.coffee_multiple_buttons {
     display: inline
 }
 
-.multipleButtons > button {
+.coffee_multiple_buttons > button {
     width: 90px;
     margin: 2vh 1vw;
 }
 
 @media (min-width: 769px) {
-    .formContainer {
+    .coffee_form_container {
         background-color: #404040;
         width: 400px;
         padding-bottom: 2vh;
