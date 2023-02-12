@@ -2,12 +2,12 @@
     border-radius: 25px;
     text-align: center;
     padding: 25px;
-    width: 40vw;
-    margin: 4vh auto;
+    width: 160px;
+    margin: 25px auto;
 }
 
 .coffee_status_container {
-    margin: 12vh auto;
+    margin: 50px auto;
 }
 
 .coffee_yes_background {
@@ -31,21 +31,38 @@
 }
 
 .coffee_main p:nth-child(1) {
-    font-size: 6vw;
-    margin: 3vh auto;
+    font-size: 1.6rem;
+    margin: 13% auto;
 }
 
 .coffee_main p:nth-child(2) {
-    font-size: 4vw;
-    margin: 1vh auto;
+    font-size: 1.2rem;
+    margin: 0 auto;
+}
+
+.coffee_main h1 {
+    font-size: 2.3rem;
+    margin: 30px 0;
+    text-align: center;
 }
 
 @media (min-width: 769px) {
+    .coffee_container {
+        padding: 25px;
+        width: 600px;
+        margin: 300px auto;
+    }
+
     .coffee_main p:nth-child(1) {
-        margin: 10vh auto;
+        font-size: 5rem;
     }
 
     .coffee_main p:nth-child(2) {
-        font-size: 3vw;
+        font-size: 3rem;
+        margin: 3% auto;
+    }
+
+    .coffee_main h1 {
+        font-size: 6rem;
     }
 }

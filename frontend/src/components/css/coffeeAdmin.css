@@ -1,25 +1,19 @@
 .coffee_admin form {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 0 auto;
     align-items: center;
 }
 
 .coffee_admin input, .coffee_admin button {
-    margin: 2vh auto;
+    margin: 12px auto;
     height: 30px;
     width: 200px;
 }
 
-.coffee_admin button {
-    margin-left: 0;
-    margin-right: 0;
-    cursor: pointer;
-}
-
 .coffee_form_container {
     display: flex;
-    margin: 20vh auto;
+    margin: 140px auto;
     flex-direction: column;
     align-items: center;
 }
@@ -37,15 +31,44 @@
 }
 
 .coffee_multiple_buttons > button {
-    width: 90px;
-    margin: 2vh 1vw;
+    cursor: pointer;
+    width: 100px;
+    margin: 12px 5px;
+}
+
+.coffee_admin h1 {
+    font-size: 2.3rem;
+    margin: 30px 0;
+    text-align: center;
 }
 
 @media (min-width: 769px) {
     .coffee_form_container {
         background-color: #404040;
-        width: 400px;
+        margin: 270px auto;
+        width: 600px;
         padding-bottom: 2vh;
         border-radius: 25px;
+    }
+
+    .coffee_admin input, .coffee_admin button {
+        margin: 25px auto;
+        height: 60px;
+        width: 400px;
+        border-radius: 10px;
+        font-size: 1.5rem;
+    }
+
+    .coffee_multiple_buttons > button {
+        width: 200px;
+        margin: 24px 10px;
+    }
+
+    .coffee_admin h1 {
+        font-size: 6rem;
+    }
+
+    .coffee_admin h2 {
+        font-size: 3rem;
     }
 }
