@@ -54,9 +54,17 @@
     .coffee_admin input, .coffee_admin button {
         margin: 25px auto;
         height: 60px;
-        width: 400px;
+        width: 360px;
         border-radius: 10px;
         font-size: 1.5rem;
+    }
+
+    .coffee_error_message, .coffee_success_message {
+        font-size: 1.5rem;
+    }
+
+    .coffee_admin input {
+        padding: 0 15px;
     }
 
     .coffee_multiple_buttons > button {
