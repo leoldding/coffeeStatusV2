@@ -3,7 +3,7 @@
     text-align: center;
     padding: 25px;
     width: 160px;
-    margin: 25px auto;
+    margin: 20px auto;
 }
 
 .coffee_status_container {
@@ -50,7 +50,7 @@
     .coffee_container {
         padding: 25px;
         width: 600px;
-        margin: 300px auto;
+        margin: 9% auto;
     }
 
     .coffee_main p:nth-child(1) {
