@@ -2,7 +2,7 @@ Website: coffee.leoding.com
 
 # Context
 
-It is a well-known, among my friends, fact that I frequent the same coffee shop to do my work. 
+It is a well-known fact, among my friends, that I frequent the same coffee shop to do my work. 
 Occasionally, they'll want to pop by to also do work or simply just to say "hi".
 Before they head off towards the coffee shop, they'll send me a text to make sure that I am actually there, to which I'll respond with a simple "yes" or "no".
 There exists a flaw in this system: I miss the text.
